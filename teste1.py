@@ -118,17 +118,17 @@ fig = plt.figure()
 gs = gridspec.GridSpec(4, 3, hspace=0.12, wspace=0.00)
 
 # Infer seasons from time values
-months = dset['time.month'].values
-seasons = ['DJF', 'MAM', 'JJA', 'SON']
-season_labels = [seasons[(month-1)//3] for month in months]
-
-
+# months = dset['time.month'].values
 # seasons = ['DJF', 'MAM', 'JJA', 'SON']
+# season_labels = [seasons[(month-1)//3] for month in months]
 
-for i, season in enumerate(season_labels):
-    row = i // 4  # Use integer division to get the row index
-    col = i % 4  # Use modulo to get the column index
-    create_plot(plt.subplot(gs[row, col], projection=ccrs.PlateCarree()), row, col, sclim, -44, season)
+
+# # seasons = ['DJF', 'MAM', 'JJA', 'SON']
+
+# for i, season in enumerate(season_labels):
+#     row = i // 4  # Use integer division to get the row index
+#     col = i % 4  # Use modulo to get the column index
+create_plot(plt.subplot( projection=ccrs.PlateCarree()), row, col, sclim, -44, season)
 
 
     # create_plot_MediaAnual(plt.subplot(gs[row, col], projection=ccrs.PlateCarree()), row, col, sclimMediaAnual, -44, season)
