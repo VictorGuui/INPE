@@ -93,7 +93,7 @@ for i, var_name in enumerate(variaveis):
     ax.set_title(f'{var_name} Climatology')
 
 # Salva a figura em um arquivo chamado 'GPCCjul2005_jun2006-matplot.png' com uma resolução de 300 dpi
-plt.savefig('GPCCjul2005_jun2006-matplot-mm.png', dpi=300)
+plt.savefig('./GPCC/GPCCjul2005_jun2006-matplot-mm.png', dpi=300)
 
 # Exibe o gráfico na tela
 plt.show()

@@ -89,7 +89,6 @@ for i, season in enumerate(("DJF", "MAM", "JJA", "SON")):
     cmap="RdBu_r",
     add_colorbar=True,
     extend="both",
-    levels=difLevels,
 )
 
     # Plota o mapa da diferença entre a média ponderada e não ponderada da precipitação para a estação atual no terceiro subgráfico
@@ -125,7 +124,7 @@ axes[0, 2].set_title("Diferença")  # Adiciona um título ao terceiro subgráfic
 
 plt.tight_layout()  # Ajusta o layout para evitar sobreposição
 
-plt.savefig('CHIRPS2000_mm-mes_matplot.png', dpi=300)
+plt.savefig('./CHIRPS_MediaPondera_MediaNaoPonderada_diferençaEntreMedias/CHIRPS2000_mm-mes_matplot.png', dpi=300)
 
 # Título geral
 fig.suptitle("Precipitação Média por Estação", fontsize=16, y=1.02)

@@ -1,0 +1,1 @@
+Nesse calculo anual o comando pega apenas os meses de junho portanto não consigo plot os outros meses.

@@ -123,12 +123,12 @@ gs = gridspec.GridSpec(4, 3, hspace=0.12, wspace=0.00)
 # season_labels = [seasons[(month-1)//3] for month in months]
 
 
-# # seasons = ['DJF', 'MAM', 'JJA', 'SON']
+seasons = ['DJF', 'MAM', 'JJA', 'SON']
 
 # for i, season in enumerate(season_labels):
 #     row = i // 4  # Use integer division to get the row index
 #     col = i % 4  # Use modulo to get the column index
-create_plot(plt.subplot( projection=ccrs.PlateCarree()), row, col, sclim, -44, season)
+create_plot(plt.subplot( projection=ccrs.PlateCarree()), sclim, -44, seasons)
 
 
     # create_plot_MediaAnual(plt.subplot(gs[row, col], projection=ccrs.PlateCarree()), row, col, sclimMediaAnual, -44, season)
