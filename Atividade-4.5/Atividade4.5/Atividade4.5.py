@@ -24,23 +24,6 @@ lon = dset.lon.values
 # Seleciona a variável 'precip' do arquivo de dados
 var = dset['sat_gauge_precip']
 
-# ## Este arquivo da NASA tem apenas o período de 1 mes.
-# # ds = xr.open_dataset('/mnt/c/INPE/Semana 30102023-01112023/Atividade3.2.MalhaComTodasUFsDoBrasil/GPCPMON_L3_202212_V3.2.nc4')
-
-
-# # # Defina o intervalo de datas desejado
-# # start_date = '2023-03-01'
-# # end_date = '2023-03-31'
-
-# # # Selecione a variável "sat_gauge_precip" e o intervalo de datas
-# # sat_gauge_precip = ds['sat_gauge_precip'].sel(time=slice(start_date, end_date))
-
-# # # Agora, sat_gauge_precip contém os dados de precipitação combinada de satélite e pluviômetros no intervalo de datas
-
-# # # Você pode plotar os dados para verificar se o recorte está correto
-# # sat_gauge_precip.plot()
-# # plt.title('Precipitação Combinada de Satélite e Pluviômetros (Março de 2023)')
-# # plt.show()
 
 # # Calcula a média anual dos dados de precipitação
 clim = np.mean(var, axis=0)

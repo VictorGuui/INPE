@@ -28,8 +28,7 @@ season_months = {
 fig = plt.figure(figsize=(15, 12))
 gs = gridspec.GridSpec(4, 3, height_ratios=[1, 1, 1, 1], width_ratios=[1, 1, 1], hspace=0.3, wspace=0.3)
 
-# Loop para preencher as subplots
-# Loop para preencher as subplots
+
 # Loop para preencher as subplots
 for i, data in enumerate([dset, dsetMediaAnual, dsetMediaSazonal]):
     for j, season in enumerate(seasons):
