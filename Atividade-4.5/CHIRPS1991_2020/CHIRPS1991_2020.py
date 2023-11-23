@@ -50,31 +50,31 @@ gl.right_labels = False
 gl.top_labels = False
 
 # Define os níveis de contorno
-levels = np.linspace(0.0, 500.0, 11)
+levels = np.linspace(0.0, 550.0, 11)
 
 # Inicializa um gráfico de contorno preenchido com os dados de precipitação (clim)
 cnplot = ax.contourf(clim.longitude, clim.latitude, clim,levels=levels, cmap='YlGnBu', extend='max')
 
 # Adiciona uma barra de cores (colorbar) na parte inferior do gráfico
 cbar = plt.colorbar(cnplot, orientation='horizontal', pad=0.07, shrink=0.6)
-cbar.set_label('precipitation (mm/day) \n CHIRPS(2002)')
+cbar.set_label('precipitation (mm/day) \n CHIRPS')
 
 # Define o título do gráfico
-ax.set_title(' (matplotlib)')
+ax.set_title('(matplotlib)')
 
 # Plota os limites dos estados (supondo que sejam limites de estados geográficos)
 estados.plot(ax=ax, color='none', edgecolor='black')
 
 # Salva a figura em um arquivo chamado 's1-matplot.png' com uma resolução de 300 dpi
-plt.savefig('./CHIRPS1991_2020/s1-CHIRPS.png', dpi=300)
+plt.savefig('s1-CHIRPS.png', dpi=300)
 
 # Exibe o gráfico na tela
-plt.show()
+# plt.show()
 
 def create_plot(ax, nrow, ncol, data, tlon, season=''):
-    ax.set_extent((-90.0, -30.0, -60.0, 15.0))  # Define a extensão geográfica
-    ax.coastlines(resolution='110m', color='black')  # Adiciona a linha da costa
-    ax.add_feature(cfeature.BORDERS, linewidth=0.5, edgecolor='black')  # Adiciona as fronteiras
+    ax.set_extent((-90.0, -30.0, -60.0, 15.0))
+    ax.coastlines(resolution='110m', color='black')
+    ax.add_feature(cfeature.BORDERS, linewidth=0.5, edgecolor='black')
 
     gl = ax.gridlines(draw_labels=True)
     gl.xlines = False
@@ -82,16 +82,15 @@ def create_plot(ax, nrow, ncol, data, tlon, season=''):
     gl.right_labels = False
     gl.top_labels = False
 
-    levels = np.linspace(0.0, 500.0, 11)  # Define os níveis de contorno Aqui, você está criando uma lista de 11 valores espaçados uniformemente entre 0 e 100. Esses valores representam os níveis de contorno que serão usados no gráfico.
-    cnplot = ax.contourf(data.longitude, data.latitude, data.sel(season=season), levels= levels, cmap='YlGnBu', extend='max')  # Cria um plot de contorno
-    ax.text(tlon, -55, season, bbox=dict(facecolor='white', alpha=0.7))  # Adiciona o nome da estação
+    levels = np.linspace(0.0, 550.0, 11)
+    cnplot = ax.contourf(data.longitude, data.latitude, data.sel(season=season), levels=levels, cmap='YlGnBu', extend='max')
+    ax.text(tlon, -55, season, bbox=dict(facecolor='white', alpha=0.7))
 
     return cnplot
 
 # Cria uma figura e uma grade de subplots
-fig = plt.figure()
-# plt.show()
-gs = gridspec.GridSpec(2, 2, hspace=0.12, wspace=0.00)
+fig = plt.figure(figsize=(10, 8))
+gs = gridspec.GridSpec(2, 2, hspace=0.2, wspace=0.00)
 
 # Define as estações que deseja plotar
 seasons = ['DJF', 'MAM', 'JJA', 'SON']
@@ -103,16 +102,15 @@ for i, season in enumerate(seasons):
     create_plot(plt.subplot(gs[row, col], projection=ccrs.PlateCarree()), row, col, sclim, -44, season)
 
 # Adiciona uma barra de cores
-cax = plt.axes([0.2, 0.065, 0.6, 0.069])
+cax = plt.axes([0.2, 0.065, 0.6, 0.01])
 cbar = plt.colorbar(create_plot(plt.subplot(gs[0, 0], projection=ccrs.PlateCarree()), 0, 0, sclim, -44, 'DJF'), cax=cax, orientation='horizontal', pad=0.4)
 
 # Salva a figura e a exibe
-plt.savefig('./CHIRPS1991_2020/s2-CHIRPS.png', dpi=300)
-
+plt.savefig('s2-CHIRPS.png', dpi=300)
 plt.show()
 
-img = Image.open("./CHIRPS1991_2020/s1-CHIRPS.png")
-img1 = Image.open("./CHIRPS1991_2020/s2-CHIRPS.png")
+img = Image.open("s1-CHIRPS.png")
+img1 = Image.open("s2-CHIRPS.png")
 
 # Redimensiona as imagens
 img_size = img.resize((670, 1024))
@@ -126,4 +124,4 @@ img2.paste(img_size, (0, 0))
 img2.paste(img1_size, (670, 0))
 
 # Salva a nova imagem
-img2.save('./CHIRPS1991_2020/s1-medias1991-2020Brasil.png')
+img2.save('s1-medias1991-2020Brasil.png')
