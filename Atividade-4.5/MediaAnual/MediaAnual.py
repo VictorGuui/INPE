@@ -43,8 +43,8 @@ def create_plot(ax, data, tlon, season=''):
     return cnplot
 
 # Cria uma figura e uma grade de subplots
-fig = plt.figure(figsize=(12, 12))
-gs = gridspec.GridSpec(3, 3, hspace=0.3, wspace=0.15)
+fig = plt.figure(figsize=(15, 15))
+gs = gridspec.GridSpec(3, 3, hspace=0.4, wspace=0.4)
 
 # Cria e plota os subplots para cada temporada
 for i, season in enumerate(primeiras_jja):
@@ -57,5 +57,5 @@ cax = plt.axes([0.2, 0.065, 0.6, 0.02])
 cbar = plt.colorbar(create_plot(plt.subplot(gs[0, 0], projection=ccrs.PlateCarree()), sclim, -44, primeiras_jja[0]), cax=cax, orientation='horizontal', pad=0.4)
 
 # Salva a figura e a exibe
-plt.savefig('./ImagensMediaAnual/s2-CHIRPSMediaAnual.png', dpi=300)
+plt.savefig('s2-CHIRPSMediaAnual.png', dpi=300)
 plt.show()

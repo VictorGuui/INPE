@@ -57,7 +57,7 @@ cnplot = ax.contourf(clim.longitude, clim.latitude, clim, cmap='YlGnBu',levels =
 
 # Adiciona uma barra de cores (colorbar) na parte inferior do gráfico
 cbar = plt.colorbar(cnplot, orientation='horizontal', pad=0.07, shrink=0.6)
-cbar.set_label('precipitation (mm/day) \n CHIRPS(2002)')
+cbar.set_label('precipitation (mm/day) \n CHIRPS')
 
 # Define o título do gráfico
 ax.set_title('(matplotlib)')
@@ -89,9 +89,8 @@ def create_plot(ax, nrow, ncol, data, tlon, season=''):
     return cnplot
 
 # Cria uma figura e uma grade de subplots
-fig = plt.figure()
-# plt.show()
-gs = gridspec.GridSpec(2, 2, hspace=0.12, wspace=0.00)
+fig = plt.figure(figsize=(10, 8))
+gs = gridspec.GridSpec(2, 2, hspace=0.2, wspace=0.00)
 
 # Define as estações que deseja plotar
 seasons = ['DJF', 'MAM', 'JJA', 'SON']
@@ -103,9 +102,27 @@ for i, season in enumerate(seasons):
     create_plot(plt.subplot(gs[row, col], projection=ccrs.PlateCarree()), row, col, sclim, -44, season)
 
 # Adiciona uma barra de cores
-cax = plt.axes([0.2, 0.065, 0.6, 0.069])
+cax = plt.axes([0.2, 0.065, 0.6, 0.01])
 cbar = plt.colorbar(create_plot(plt.subplot(gs[0, 0], projection=ccrs.PlateCarree()), 0, 0, sclim, -44, 'DJF'), cax=cax, orientation='horizontal', pad=0.4)
 
 # Salva a figura e a exibe
-plt.savefig('s2-CHIRPSMediaSazonal.png', dpi=300)
+plt.savefig('CHIRPSMediasSazonais.png', dpi=300)
 plt.show()
+
+# Abre as imagens salvas
+img = Image.open("CHIRPSMediaSazonal.png")
+img1 = Image.open("CHIRPSMediasSazonais.png")
+
+# Redimensiona as imagens
+img_size = img.resize((670, 1024))
+img1_size = img1.resize((670, 1024))
+
+# Cria uma nova imagem branca
+img2 = Image.new("RGB", (1340, 1024), "white")
+
+# Cola as imagens na nova imagem
+img2.paste(img_size, (0, 0))
+img2.paste(img1_size, (670, 0))
+
+# Salva a nova imagem
+img2.save('Junção-medias-sazonais.png')
