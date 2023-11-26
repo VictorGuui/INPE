@@ -25,6 +25,7 @@ var = dsetMediaSazonal['precip']
 
 # # Calcula a média anual dos dados de precipitação
 clim = np.mean(var, axis=0)
+print(dsetMediaSazonal['time.season'])
 # # print(clim.coords)
 
 # # Calcula a média sazonal dos dados de precipitação
@@ -60,7 +61,7 @@ cbar = plt.colorbar(cnplot, orientation='horizontal', pad=0.07, shrink=0.6)
 cbar.set_label('precipitation (mm/day) \n CHIRPS')
 
 # Define o título do gráfico
-ax.set_title('(matplotlib)')
+ax.set_title('CHIRPS Média Sazonal')
 
 # Plota os limites dos estados (supondo que sejam limites de estados geográficos)
 estados.plot(ax=ax, color='none', edgecolor='black')
@@ -70,6 +71,9 @@ plt.savefig('CHIRPSMediaSazonal.png', dpi=300)
 
 # Exibe o gráfico na tela
 plt.show()
+
+# Define as estações que deseja plotar
+seasons = ['DJF', 'MAM', 'JJA', 'SON']
 
 def create_plot(ax, nrow, ncol, data, tlon, season=''):
     ax.set_extent((-90.0, -30.0, -60.0, 15.0))  # Define a extensão geográfica
@@ -92,8 +96,6 @@ def create_plot(ax, nrow, ncol, data, tlon, season=''):
 fig = plt.figure(figsize=(10, 8))
 gs = gridspec.GridSpec(2, 2, hspace=0.2, wspace=0.00)
 
-# Define as estações que deseja plotar
-seasons = ['DJF', 'MAM', 'JJA', 'SON']
 
 # Cria e plota os subplots para cada estação
 for i, season in enumerate(seasons):

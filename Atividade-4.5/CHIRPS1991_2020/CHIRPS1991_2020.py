@@ -59,9 +59,6 @@ cnplot = ax.contourf(clim.longitude, clim.latitude, clim,levels=levels, cmap='Yl
 cbar = plt.colorbar(cnplot, orientation='horizontal', pad=0.07, shrink=0.6)
 cbar.set_label('precipitation (mm/day) \n CHIRPS')
 
-# Define o título do gráfico
-ax.set_title('(matplotlib)')
-
 # Plota os limites dos estados (supondo que sejam limites de estados geográficos)
 estados.plot(ax=ax, color='none', edgecolor='black')
 
